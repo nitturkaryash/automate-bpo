@@ -175,3 +175,61 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Tesseract Animation */
+@keyframes rotate-tesseract {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+@keyframes float-tesseract {
+  0%, 100% {
+    transform: translateY(0px) rotateX(45deg) rotateY(45deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(45deg) rotateY(45deg);
+  }
+}
+
+.tesseract {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  transform-style: preserve-3d;
+  animation: float-tesseract 6s ease-in-out infinite;
+}
+
+.tesseract-inner {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: rotate-tesseract 20s linear infinite;
+}
+
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid #3b82f6;
+  background: rgba(59, 130, 246, 0.1);
+  backface-visibility: visible;
+}
+
+.face-front { transform: translateZ(50px); }
+.face-back { transform: translateZ(-50px); }
+.face-right { transform: rotateY(90deg) translateZ(50px); }
+.face-left { transform: rotateY(-90deg) translateZ(50px); }
+.face-top { transform: rotateX(90deg) translateZ(50px); }
+.face-bottom { transform: rotateX(-90deg) translateZ(50px); }
+
+.face-inner-front { transform: translateZ(25px); }
+.face-inner-back { transform: translateZ(-25px); }
+.face-inner-right { transform: rotateY(90deg) translateZ(25px); }
+.face-inner-left { transform: rotateY(-90deg) translateZ(25px); }
+.face-inner-top { transform: rotateX(90deg) translateZ(25px); }
+.face-inner-bottom { transform: rotateX(-90deg) translateZ(25px); }
