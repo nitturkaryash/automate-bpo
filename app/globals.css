@@ -195,12 +195,22 @@ body {
   }
 }
 
+@keyframes glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 15px rgba(123, 0, 255, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.7));
+  }
+}
+
 .tesseract {
   position: relative;
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   transform-style: preserve-3d;
   animation: float-tesseract 6s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(123, 0, 255, 0.6));
 }
 
 .tesseract-inner {
@@ -215,21 +225,35 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  border: 2px solid #3b82f6;
-  background: rgba(59, 130, 246, 0.1);
+  border: 3px solid #7b00ff;
+  background: rgba(123, 0, 255, 0.15);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
   backface-visibility: visible;
 }
 
-.face-front { transform: translateZ(50px); }
-.face-back { transform: translateZ(-50px); }
-.face-right { transform: rotateY(90deg) translateZ(50px); }
-.face-left { transform: rotateY(-90deg) translateZ(50px); }
-.face-top { transform: rotateX(90deg) translateZ(50px); }
-.face-bottom { transform: rotateX(-90deg) translateZ(50px); }
+.face::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    45deg,
+    rgba(123, 0, 255, 0.5),
+    rgba(0, 255, 255, 0.5)
+  );
+  opacity: 0.3;
+}
 
-.face-inner-front { transform: translateZ(25px); }
-.face-inner-back { transform: translateZ(-25px); }
-.face-inner-right { transform: rotateY(90deg) translateZ(25px); }
-.face-inner-left { transform: rotateY(-90deg) translateZ(25px); }
-.face-inner-top { transform: rotateX(90deg) translateZ(25px); }
-.face-inner-bottom { transform: rotateX(-90deg) translateZ(25px); }
+.face-front { transform: translateZ(75px); }
+.face-back { transform: translateZ(-75px); }
+.face-right { transform: rotateY(90deg) translateZ(75px); }
+.face-left { transform: rotateY(-90deg) translateZ(75px); }
+.face-top { transform: rotateX(90deg) translateZ(75px); }
+.face-bottom { transform: rotateX(-90deg) translateZ(75px); }
+
+.face-inner-front { transform: translateZ(37.5px); border-color: #00ffff; }
+.face-inner-back { transform: translateZ(-37.5px); border-color: #00ffff; }
+.face-inner-right { transform: rotateY(90deg) translateZ(37.5px); border-color: #00ffff; }
+.face-inner-left { transform: rotateY(-90deg) translateZ(37.5px); border-color: #00ffff; }
+.face-inner-top { transform: rotateX(90deg) translateZ(37.5px); border-color: #00ffff; }
+.face-inner-bottom { transform: rotateX(-90deg) translateZ(37.5px); border-color: #00ffff; }
