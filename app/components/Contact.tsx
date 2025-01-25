@@ -65,10 +65,17 @@ export default function Contact() {
               </button>
             </form>
           </div>
-          <div className="mt-8 text-center">
-            <p className="font-semibold hover:text-blue-600 transition-colors duration-300">Email: contact@automatebpo.com</p>
-            <p className="font-semibold hover:text-blue-600 transition-colors duration-300">Phone: +1 (555) 123-4567</p>
-            <p className="font-semibold hover:text-blue-600 transition-colors duration-300">Based in San Francisco, CA</p>
+          <div className="mt-8 text-center space-y-2">
+            <p className="font-semibold hover:text-blue-600 transition-colors duration-300">
+              <span className="block text-lg mb-1">The-Connections ITES Business Services Private Limited</span>
+              Vega Center, Swargate, Pune - 411037
+            </p>
+            <p className="font-semibold hover:text-blue-600 transition-colors duration-300">
+              Email: info@the-connections.com
+            </p>
+            <p className="font-semibold hover:text-blue-600 transition-colors duration-300">
+              Phone: (+91) 788 789 8196
+            </p>
           </div>
           <p className="text-center mt-8 text-xl font-semibold">Let's Build Your Dream Sales Team!</p>
         </div>
