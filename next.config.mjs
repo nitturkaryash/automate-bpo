@@ -21,6 +21,8 @@ const nextConfig = {
     parallelServerBuildTraces: true,
     parallelServerCompiles: true,
   },
+  output: 'export',  // Enable static exports
+  basePath: '/automate-bpo',
 }
 
 mergeConfig(nextConfig, userConfig)
