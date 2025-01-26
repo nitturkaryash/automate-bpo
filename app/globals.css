@@ -14,56 +14,62 @@ body {
 
 /* Floating Animations */
 @keyframes float {
-  0% {
-    transform: translateY(0px);
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-10px);
-  }
-  100% {
-    transform: translateY(0px);
+    transform: translate3d(0, -8px, 0);
   }
 }
 
 @keyframes float-slow {
-  0% {
-    transform: translateY(0px);
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0px);
+    transform: translate3d(0, -4px, 0);
   }
 }
 
 @keyframes pulse-gentle {
-  0% {
-    transform: scale(1);
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
   }
   50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
+    transform: scale3d(1.05, 1.05, 1);
   }
 }
 
 .animate-float {
-  animation: float 3s ease-in-out infinite;
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .animate-float-slow {
-  animation: float-slow 4s ease-in-out infinite;
+  animation: float-slow 5s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 .animate-pulse-gentle {
-  animation: pulse-gentle 3s ease-in-out infinite;
+  animation: pulse-gentle 4s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
-/* Add hover effects */
+/* Add hover effects with performance optimizations */
 .service-card {
-  @apply transition-all duration-300 hover:transform hover:-translate-y-2 hover:shadow-xl;
+  @apply transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .nav-link {
@@ -80,19 +86,25 @@ body {
 }
 
 .process-item {
-  @apply transition-all duration-300;
+  @apply transition-transform duration-300;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .process-item:hover {
-  @apply transform scale-105;
+  transform: scale3d(1.05, 1.05, 1);
 }
 
 .contact-input {
-  @apply transition-all duration-300;
+  @apply transition-transform duration-300;
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .contact-input:focus {
-  @apply transform scale-[1.02];
+  transform: scale3d(1.02, 1.02, 1);
 }
 
 @layer base {
@@ -175,85 +187,3 @@ body {
     @apply bg-background text-foreground;
   }
 }
-
-/* Tesseract Animation */
-@keyframes rotate-tesseract {
-  0% {
-    transform: rotateX(0deg) rotateY(0deg);
-  }
-  100% {
-    transform: rotateX(360deg) rotateY(360deg);
-  }
-}
-
-@keyframes float-tesseract {
-  0%, 100% {
-    transform: translateY(0px) rotateX(45deg) rotateY(45deg);
-  }
-  50% {
-    transform: translateY(-20px) rotateX(45deg) rotateY(45deg);
-  }
-}
-
-@keyframes glow {
-  0%, 100% {
-    filter: drop-shadow(0 0 15px rgba(123, 0, 255, 0.5));
-  }
-  50% {
-    filter: drop-shadow(0 0 25px rgba(0, 255, 255, 0.7));
-  }
-}
-
-.tesseract {
-  position: relative;
-  width: 150px;
-  height: 150px;
-  transform-style: preserve-3d;
-  animation: float-tesseract 6s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(123, 0, 255, 0.6));
-}
-
-.tesseract-inner {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  transform-style: preserve-3d;
-  animation: rotate-tesseract 20s linear infinite;
-}
-
-.face {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border: 3px solid #7b00ff;
-  background: rgba(123, 0, 255, 0.15);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-  backdrop-filter: blur(5px);
-  backface-visibility: visible;
-}
-
-.face::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    45deg,
-    rgba(123, 0, 255, 0.5),
-    rgba(0, 255, 255, 0.5)
-  );
-  opacity: 0.3;
-}
-
-.face-front { transform: translateZ(75px); }
-.face-back { transform: translateZ(-75px); }
-.face-right { transform: rotateY(90deg) translateZ(75px); }
-.face-left { transform: rotateY(-90deg) translateZ(75px); }
-.face-top { transform: rotateX(90deg) translateZ(75px); }
-.face-bottom { transform: rotateX(-90deg) translateZ(75px); }
-
-.face-inner-front { transform: translateZ(37.5px); border-color: #00ffff; }
-.face-inner-back { transform: translateZ(-37.5px); border-color: #00ffff; }
-.face-inner-right { transform: rotateY(90deg) translateZ(37.5px); border-color: #00ffff; }
-.face-inner-left { transform: rotateY(-90deg) translateZ(37.5px); border-color: #00ffff; }
-.face-inner-top { transform: rotateX(90deg) translateZ(37.5px); border-color: #00ffff; }
-.face-inner-bottom { transform: rotateX(-90deg) translateZ(37.5px); border-color: #00ffff; }
