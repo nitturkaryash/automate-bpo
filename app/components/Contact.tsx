@@ -12,18 +12,10 @@ export default function Contact() {
     setSubmitStatus('idle');
 
     try {
-      const formData = new FormData(e.currentTarget);
-      const response = await fetch('https://formsubmit.co/info@the-connections.com', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (response.ok) {
-        setSubmitStatus('success');
-        (e.target as HTMLFormElement).reset();
-      } else {
-        setSubmitStatus('error');
-      }
+      const form = e.currentTarget;
+      form.submit(); // Let the form submit naturally to FormSubmit's endpoint
+      setSubmitStatus('success');
+      form.reset();
     } catch (error) {
       setSubmitStatus('error');
     } finally {
@@ -40,13 +32,22 @@ export default function Contact() {
             Ready to build and automate your dream sales team? Contact us today for a free consultation!
           </p>
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-            <form action="https://formsubmit.co/info@the-connections.com" method="POST" onSubmit={handleSubmit} className="space-y-4">
+            <form 
+              action="https://formsubmit.co/e2a814c94f5b9c7c6f1b6c2f0c5c0c0c" 
+              method="POST" 
+              onSubmit={handleSubmit} 
+              className="space-y-4"
+            >
               {/* Honeypot */}
               <input type="text" name="_honey" style={{ display: 'none' }} />
               {/* Disable Captcha */}
               <input type="hidden" name="_captcha" value="false" />
               {/* Success page */}
-              <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.href : ''} />
+              <input type="hidden" name="_next" value={`${window.location.origin}${window.location.pathname}?success=true`} />
+              {/* Subject */}
+              <input type="hidden" name="_subject" value="New Contact Form Submission" />
+              {/* Template */}
+              <input type="hidden" name="_template" value="table" />
 
               <div className="mb-4 group">
                 <label htmlFor="name" className="block text-gray-700 font-semibold mb-2 group-hover:text-blue-600 transition-colors">
