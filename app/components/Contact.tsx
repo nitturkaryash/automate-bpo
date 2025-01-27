@@ -1,32 +1,26 @@
 'use client';
 
-import { useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
+import { useState } from 'react';
 
 export default function Contact() {
-  const formRef = useRef<HTMLFormElement>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formRef.current) return;
-
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
     try {
-      // Replace these with your EmailJS credentials
-      const result = await emailjs.sendForm(
-        'YOUR_SERVICE_ID',
-        'YOUR_TEMPLATE_ID',
-        formRef.current,
-        'YOUR_PUBLIC_KEY'
-      );
+      const formData = new FormData(e.currentTarget);
+      const response = await fetch('https://formsubmit.co/info@the-connections.com', {
+        method: 'POST',
+        body: formData,
+      });
 
-      if (result.text === 'OK') {
+      if (response.ok) {
         setSubmitStatus('success');
-        formRef.current.reset();
+        (e.target as HTMLFormElement).reset();
       } else {
         setSubmitStatus('error');
       }
@@ -46,14 +40,23 @@ export default function Contact() {
             Ready to build and automate your dream sales team? Contact us today for a free consultation!
           </p>
           <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
-            <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
+            <form action="https://formsubmit.co/info@the-connections.com" method="POST" onSubmit={handleSubmit} className="space-y-4">
+              {/* Honeypot */}
+              <input type="text" name="_honey" style={{ display: 'none' }} />
+              {/* Disable Captcha */}
+              <input type="hidden" name="_captcha" value="false" />
+              {/* Success page */}
+              <input type="hidden" name="_next" value={typeof window !== 'undefined' ? window.location.href : ''} />
+
               <div className="mb-4 group">
                 <label htmlFor="name" className="block text-gray-700 font-semibold mb-2 group-hover:text-blue-600 transition-colors">
                   Name
                 </label>
                 <input
+                  id="name"
                   type="text"
-                  name="user_name"
+                  name="name"
+                  placeholder="Your name"
                   className="contact-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-blue-400 transition-colors"
                   required
                 />
@@ -63,8 +66,10 @@ export default function Contact() {
                   Email
                 </label>
                 <input
+                  id="email"
                   type="email"
-                  name="user_email"
+                  name="email"
+                  placeholder="your.email@example.com"
                   className="contact-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-blue-400 transition-colors"
                   required
                 />
@@ -74,8 +79,10 @@ export default function Contact() {
                   Company
                 </label>
                 <input
+                  id="company"
                   type="text"
-                  name="user_company"
+                  name="company"
+                  placeholder="Your company name"
                   className="contact-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-blue-400 transition-colors"
                   required
                 />
@@ -85,8 +92,10 @@ export default function Contact() {
                   How can we help?
                 </label>
                 <textarea
+                  id="message"
                   name="message"
                   rows={4}
+                  placeholder="Tell us about your requirements..."
                   className="contact-input w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 hover:border-blue-400 transition-colors"
                   required
                 ></textarea>
