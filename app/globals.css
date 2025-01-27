@@ -66,10 +66,24 @@ body {
 
 /* Add hover effects with performance optimizations */
 .service-card {
-  @apply transition-transform duration-300 hover:-translate-y-2 hover:shadow-xl;
+  @apply transition-all duration-300;
   transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(to bottom right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.9));
+}
+
+.service-card ul li {
+  transition: transform 0.2s ease;
+}
+
+.service-card:hover ul li {
+  transform: translateX(5px);
 }
 
 .nav-link {
@@ -85,15 +99,43 @@ body {
   @apply w-full;
 }
 
+/* Process Item Animation */
 .process-item {
-  @apply transition-transform duration-300;
+  @apply relative transition-all duration-300;
   transform: translateZ(0);
   will-change: transform;
   backface-visibility: hidden;
 }
 
-.process-item:hover {
-  transform: scale3d(1.05, 1.05, 1);
+.process-item::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(90deg, #7b00ff, #00ffff, #7b00ff);
+  background-size: 200% 100%;
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.process-item:hover::before {
+  opacity: 1;
+  animation: borderGlow 3s linear infinite;
+}
+
+.process-item > div {
+  @apply relative bg-white rounded-lg p-6;
+  z-index: 1;
+}
+
+@keyframes borderGlow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
 }
 
 .contact-input {
@@ -186,4 +228,29 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Step Cards Animation */
+.step-card {
+  transform: translateZ(0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.step-card:hover {
+  z-index: 10;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced hover effects */
+.hover\:shadow-glow:hover {
+  box-shadow: 0 0 30px rgba(123, 0, 255, 0.3);
+}
+
+.hover\:shadow-glow-cyan:hover {
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
 }
