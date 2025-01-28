@@ -342,3 +342,28 @@ body {
            drop-shadow(0 0 24px rgba(168, 85, 247, 0.6));
   }
 }
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(300px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(300px) rotate(-360deg);
+  }
+}
+
+.animate-orbit {
+  animation: orbit 15s linear infinite;
+  transform-origin: center;
+}
+
+.satellite-glow {
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8))
+         drop-shadow(0 0 16px rgba(59, 130, 246, 0.6))
+         drop-shadow(0 0 24px rgba(59, 130, 246, 0.4));
+}
+
+.satellite-trail {
+  filter: blur(2px);
+  opacity: 0.6;
+}
