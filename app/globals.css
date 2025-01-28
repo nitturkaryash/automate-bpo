@@ -254,3 +254,16 @@ body {
 .hover\:shadow-glow-cyan:hover {
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
 }
+
+@keyframes globe-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-globe-spin {
+  animation: globe-spin 20s linear infinite;
+}

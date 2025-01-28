@@ -1,61 +1,34 @@
 import Link from "next/link"
+import GlobeAnimation from './GlobeAnimation';
 
 export default function Hero() {
   return (
-    <section className="bg-gradient-to-br from-purple-900 via-indigo-900 to-cyan-900 text-white py-20 relative overflow-hidden">
-      <div 
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage: 'url("/grid.svg")',
-          backgroundSize: '20px 20px',
-          willChange: 'transform',
-          transform: 'translateZ(0)'
-        }}
-      />
-      <div className="container mx-auto px-6 text-center relative z-10">
-        <h1 
-          className="text-4xl md:text-6xl font-bold mb-4 animate-float-slow bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-cyan-400"
-          style={{ willChange: 'transform' }}
-        >
-          Build Your Dream Sales Team
-        </h1>
-        <p 
-          className="text-xl md:text-2xl mb-12 animate-pulse-gentle"
-          style={{ willChange: 'transform' }}
-        >
-          Simple Steps to Transform Your Business
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto mb-12">
-          <div className="step-card group">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl transition-all duration-300 hover:bg-white/20 hover:transform hover:scale-105 hover:shadow-[0_0_30px_rgba(123,0,255,0.3)]">
-              <h3 className="text-2xl font-semibold mb-3">1. Analyze</h3>
-              <p>We understand your company's unique needs and goals</p>
+    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white py-20">
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute w-full h-full bg-[radial-gradient(circle_at_center,rgba(0,100,255,0.1)_0%,transparent_70%)]"></div>
+      </div>
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-12">
+          <div className="flex-1 text-center md:text-left">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-float-slow">
+              Build & Automate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Dream Sales Team</span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-gray-300 animate-pulse-gentle">
+              Transform your business with our cutting-edge BPO solutions and sales team automation services.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+              <a href="#contact" className="px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full text-lg font-semibold hover:scale-105 transition-transform duration-300 animate-float">
+                Get Started
+              </a>
+              <a href="#services" className="px-8 py-3 bg-white/10 backdrop-blur-sm rounded-full text-lg font-semibold hover:bg-white/20 transition-colors duration-300">
+                Learn More
+              </a>
             </div>
           </div>
-          
-          <div className="step-card group">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl transition-all duration-300 hover:bg-white/20 hover:transform hover:scale-105 hover:shadow-[0_0_30px_rgba(0,255,255,0.3)]">
-              <h3 className="text-2xl font-semibold mb-3">2. Build</h3>
-              <p>Recruit and train your dedicated sales team</p>
-            </div>
-          </div>
-          
-          <div className="step-card group">
-            <div className="bg-white/10 backdrop-blur-sm p-6 rounded-xl transition-all duration-300 hover:bg-white/20 hover:transform hover:scale-105 hover:shadow-[0_0_30px_rgba(123,0,255,0.3)]">
-              <h3 className="text-2xl font-semibold mb-3">3. Launch</h3>
-              <p>Set up technology and start generating results</p>
-            </div>
+          <div className="flex-1 flex justify-center items-center">
+            <GlobeAnimation />
           </div>
         </div>
-
-        <Link
-          href="#contact"
-          className="bg-gradient-to-r from-purple-500 to-cyan-500 text-white py-4 px-8 rounded-full text-lg font-semibold transition-all duration-300 inline-block hover:shadow-[0_0_30px_rgba(123,0,255,0.5)] hover:scale-105"
-          style={{ willChange: 'transform' }}
-        >
-          Start Your Journey
-        </Link>
       </div>
     </section>
   )
