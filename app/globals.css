@@ -257,14 +257,15 @@ body {
 
 @keyframes globe-rotate {
   0% {
-    transform: rotateY(0deg);
+    transform: rotate3d(1, 1, 0, 0deg);
   }
   100% {
-    transform: rotateY(360deg);
+    transform: rotate3d(1, 1, 0, 360deg);
   }
 }
 
 .animate-globe-rotate {
-  animation: globe-rotate 20s linear infinite;
+  animation: globe-rotate 30s linear infinite;
   transform-style: preserve-3d;
+  perspective: 1000px;
 }
