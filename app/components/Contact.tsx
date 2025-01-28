@@ -1,10 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [successUrl, setSuccessUrl] = useState('');
+
+  useEffect(() => {
+    setSuccessUrl(`${window.location.origin}${window.location.pathname}?success=true`);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,7 +18,7 @@ export default function Contact() {
 
     try {
       const form = e.currentTarget;
-      form.submit(); // Let the form submit naturally to FormSubmit's endpoint
+      form.submit();
       setSubmitStatus('success');
       form.reset();
     } catch (error) {
@@ -43,7 +48,7 @@ export default function Contact() {
               {/* Disable Captcha */}
               <input type="hidden" name="_captcha" value="false" />
               {/* Success page */}
-              <input type="hidden" name="_next" value={`${window.location.origin}${window.location.pathname}?success=true`} />
+              <input type="hidden" name="_next" value={successUrl} />
               {/* Subject */}
               <input type="hidden" name="_subject" value="New Contact Form Submission" />
               {/* Template */}

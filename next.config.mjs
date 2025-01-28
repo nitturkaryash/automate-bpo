@@ -23,6 +23,14 @@ const nextConfig = {
   },
   output: 'export',  // Enable static exports
   basePath: '/automate-bpo',
+  distDir: '.next',
+  generateBuildId: async () => {
+    return 'build-' + Date.now()
+  },
+  onDemandEntries: {
+    maxInactiveAge: 60 * 60 * 1000,
+    pagesBufferLength: 2,
+  },
 }
 
 mergeConfig(nextConfig, userConfig)
