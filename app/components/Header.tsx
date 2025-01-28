@@ -18,6 +18,9 @@ export default function Header() {
             <Link href="#how-it-works" className="nav-link text-gray-600 hover:text-gray-900">
               How It Works
             </Link>
+            <Link href="#careers" className="nav-link text-gray-600 hover:text-gray-900">
+              Work with Us
+            </Link>
             <Link href="#contact" className="nav-link text-gray-600 hover:text-gray-900">
               Contact
             </Link>
