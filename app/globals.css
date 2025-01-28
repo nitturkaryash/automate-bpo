@@ -255,17 +255,31 @@ body {
   box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
 }
 
-@keyframes globe-rotate {
+@keyframes globe-rotate-diagonal {
   0% {
-    transform: rotate3d(1, 1, 0, 0deg);
+    transform: perspective(1000px) rotateX(45deg) rotateZ(0deg);
   }
   100% {
-    transform: rotate3d(1, 1, 0, 360deg);
+    transform: perspective(1000px) rotateX(45deg) rotateZ(360deg);
   }
 }
 
-.animate-globe-rotate {
-  animation: globe-rotate 30s linear infinite;
-  transform-style: preserve-3d;
-  perspective: 1000px;
+@keyframes text-rotate {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(-360deg);
+  }
 }
+
+.animate-globe-rotate-diagonal {
+  animation: globe-rotate-diagonal 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.animate-text-rotate {
+  animation: text-rotate 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
