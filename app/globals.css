@@ -268,3 +268,33 @@ body {
   animation: globe-rotate 20s linear infinite;
   transform-style: preserve-3d;
 }
+
+@keyframes globe-rotate-tilted {
+  0% {
+    transform: rotate3d(1, 1, 0, 0deg);
+  }
+  100% {
+    transform: rotate3d(1, 1, 0, 360deg);
+  }
+}
+
+.animate-globe-rotate-tilted {
+  animation: globe-rotate-tilted 20s linear infinite;
+  transform-style: preserve-3d;
+}
+
+.glow-axis {
+  box-shadow: 0 0 10px #4f46e5,
+              0 0 20px #4f46e5,
+              0 0 30px #4f46e5;
+  animation: axis-glow 2s ease-in-out infinite;
+}
+
+@keyframes axis-glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
