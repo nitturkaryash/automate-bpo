@@ -1,5 +1,4 @@
 import React from 'react';
-import Link from "next/link"
 import GlobeAnimation from './GlobeAnimation';
 
 export default function Hero() {
@@ -11,14 +10,9 @@ export default function Hero() {
       <GlobeAnimation />
       <div className="container mx-auto px-6 relative z-10">
         <div className="max-w-4xl">
-          <div className="flex flex-col md:flex-row items-baseline gap-4 mb-6">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
-              Build & Automate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Dream Sales Team</span>
-            </h1>
-            <span className="text-lg md:text-xl text-red-500 font-semibold whitespace-nowrap">
-              by The Connections India Pvt Ltd
-            </span>
-          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+            Build & Automate Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">Dream Sales Team</span>
+          </h1>
           <p className="text-xl md:text-2xl mb-8 text-gray-300">
             Transform your business with our cutting-edge BPO solutions and sales team automation services.
           </p>
@@ -33,6 +27,6 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
