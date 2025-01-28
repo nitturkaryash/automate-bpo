@@ -269,12 +269,31 @@ body {
   transform-style: preserve-3d;
 }
 
-@keyframes globe-rotate-tilted {
+@keyframes flow-glow {
   0% {
-    transform: rotate3d(1, 1, 0, 0deg);
+    transform: translateX(-100%) scaleX(2);
   }
   100% {
-    transform: rotate3d(1, 1, 0, 360deg);
+    transform: translateX(100%) scaleX(2);
+  }
+}
+
+.animate-flow-glow {
+  animation: flow-glow 3s ease-in-out infinite;
+}
+
+.ring-glow {
+  filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8))
+         drop-shadow(0 0 16px rgba(59, 130, 246, 0.6))
+         drop-shadow(0 0 24px rgba(59, 130, 246, 0.4));
+}
+
+@keyframes globe-rotate-tilted {
+  0% {
+    transform: rotate3d(1, 0, 0, 20deg);
+  }
+  100% {
+    transform: rotate3d(1, 0, 0, 380deg);
   }
 }
 
